@@ -108,12 +108,6 @@
 - [TREK-100](https://opendatalab.com/OpenDataLab/TREK-100) — 第一人称视觉中的目标跟踪（100 段视频）。
 - [Charade-Ego](https://prior.allenai.org/projects/charades-ego) — 成对的第一人称与第三人称日常活动视频。
 
-## 已剔除样本
-
-以下来自原 [Egocentric-Dataset](https://github.com/EgoAlpha/Egocentric-Dataset) 清单的数据集被**剔除**，因为其官方页面已无法访问、且无可靠官方镜像：
-
-- **EgoHands** — 印第安纳大学官方页面已失效；仅剩非官方第三方镜像。
-- **THU-READ** — 清华大学原页面无法访问；无可靠官方备份。
 
 ## 参与贡献
 

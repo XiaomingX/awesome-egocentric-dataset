@@ -15,7 +15,6 @@
   - [规模化人类视频与具身预训练](#规模化人类视频与具身预训练20252026)
   - [长期记忆与第一人称视频问答](#长期记忆与第一人称视频问答)
 - [经典数据集](#经典数据集)
-- [已剔除样本](#已剔除样本)
 - [商业受限与门控数据集](#商业受限与门控数据集)
 - [参与贡献](#参与贡献)
 - [许可](#许可)
@@ -129,7 +128,6 @@
 - [Multimodal Focused Interaction](https://discovery.dundee.ac.uk/en/datasets/multimodal-focused-interaction-dataset/) — 19 段会话、17 位对话伙伴、377 分钟的连续多模态录制。
 - [TREK-100](https://opendatalab.com/OpenDataLab/TREK-100) — 第一人称视觉中的目标跟踪（100 段视频）。
 - [Charade-Ego](https://prior.allenai.org/projects/charades-ego) — 成对的第一人称与第三人称日常活动视频。
-
 
 ## 商业受限与门控数据集
 

@@ -12,9 +12,11 @@
   - [智能眼镜与 Project Aria](#智能眼镜与-project-aria)
   - [第一人称视频理解与视频大模型](#第一人称视频理解与视频大模型)
   - [手-物交互与灵巧操作](#手-物交互与灵巧操作)
+  - [规模化人类视频与具身预训练](#规模化人类视频与具身预训练20252026)
   - [长期记忆与第一人称视频问答](#长期记忆与第一人称视频问答)
 - [经典数据集](#经典数据集)
 - [已剔除样本](#已剔除样本)
+- [商业受限与门控数据集](#商业受限与门控数据集)
 - [参与贡献](#参与贡献)
 - [许可](#许可)
 - [Egocentric 视角下的 VLA 论文（2023.08 – 2026.08）](#egocentric-视角下的-vla-论文202308--202608)
@@ -61,6 +63,11 @@
 - [EgoCVR](https://arxiv.org/abs/2407.16658) —（ECCV 2024）。第一人称细粒度组合式视频检索基准。
 - [OpenMMEgo (OME10M)](https://proceedings.neurips.cc/paper_files/paper/2025/file/24b9e3da4b01ec1e8a41144cfe8dc929-Paper-Conference.pdf) —（NeurIPS 2025）。千万级第一人称时空视频知识数据集，用于增强多模态大模型。
 - [EVUD](https://github.com/alanaai/EVUD) — alanaai（2026）。面向视频大模型的 第一人称视频指令微调数据集。
+- [EgoVid-5M](https://egovid.github.io/) — 阿里巴巴 / 中科院自动化所等（NeurIPS 2025 Datasets & Benchmarks）。首个面向第一人称视频生成的大规模数据集；**500 万段** 1080p 片段，含 500 万条高层文本描述与 6.5 万条细粒度运动学控制标注，并配套专用清洗流水线。[[论文]](https://arxiv.org/abs/2411.08380) [[代码]](https://github.com/JeffWang987/EgoVid)
+- [EgoObjects](https://github.com/facebookresearch/EgoObjects) — Meta AI（ICCV 2023）。第一人称细粒度物体理解数据集；**9,000+ 段视频 / 250 名采集者 / 11.4 万标注帧 / 1.44 万个物体实例 / 368 类**，支持类别级与实例级物体检测。MIT 许可。[[论文]](https://arxiv.org/abs/2309.08816)
+- [EgoExo-Fitness](https://github.com/iSEE-Laboratory/EgoExo-Fitness) — 中山大学（ECCV 2024）。同步第一人称 + 第三人称全身动作理解数据集；两级时序边界，并提供技术关键点校验、自然语言点评与**动作质量评分**。[[下载]](https://huggingface.co/datasets/Lymann/EgoExo-Fitness)
+- [Ego-1K](https://huggingface.co/datasets/facebook/ego-1k) —（CVPR 2026）。大规模时间同步第一人称**多视角**视频数据集；近 1,000 段短视频，由 12 台同步相机环绕佩戴 VR 头显的用户采集，聚焦手部运动与手-物交互，面向 3D/4D 新视角合成与具身感知。
+- [RekaDaily-10k](https://huggingface.co/datasets/RekaAI/RekaDaily-10k-raw) — Reka AI（2026）。增量发布的超大规模无脚本第一人称日常生活视频；当前含 **7,834 小时 / 397,171 段视频**，Apache-2.0 开放许可。
 
 ### 手-物交互与灵巧操作
 
@@ -68,6 +75,21 @@
 - [OpenEgo](https://arxiv.org/abs/2509.05513) —（2025）。大规模多模态第一人称灵巧操作数据集。
 - [EgoSim / MultiEgoView](https://arxiv.org/abs/2502.18373) —（NeurIPS 2024）。第一人称多视角模拟器 + 真实数据集。
 - [EMHI](https://arxiv.org/abs/2408.17168) —（2024）。多模态第一人称人体运动数据集。
+
+### 规模化人类视频与具身预训练（2025–2026）
+
+> 这一子类对应文末 VLA 章节的核心主线：把规模化第一人称人类视频转化为可用的动作信号，用于具身预训练。其中 Assembly-101、HOI4D、HoloAssist、RH20T-Human 是 Gr00T N1 明确列出的 egocentric 训练来源。
+
+- [EgoScale](https://arxiv.org/abs/2602.16710) — UT Austin / NVIDIA 等（2026）。规模化人类到灵巧操作迁移框架；在 **20,854 小时**动作标注第一人称人类视频上训练 VLA，首次揭示人类数据规模与验证损失之间的 **log-linear scaling law**，并证明该损失与真机成功率强相关，最终策略较无预训练基线成功率 **+54%**。
+- [EgoVerse](https://egoverse.ai/) — UC Berkeley / Stanford / Meta 等多机构（RSS 2026）。跨机构协作的人类数据驱动机器人学习平台；当前发布 **1,362 小时 / 8 万 episodes / 1,965 个任务 / 240 个场景 / 2,087 名演示者**，含标准化格式与多实验室 human-to-robot 迁移复现研究。[[论文]](https://arxiv.org/abs/2604.07607)
+- [EgoLive](https://arxiv.org/abs/2604.23570) —（2026）。面向机器人操作学习的大规模第一人称数据集；**1,680 小时** 2160×2160 立体 60fps 视频、**65,866 个 episode / 346 个真实任务**，全部采集于家政、零售、药房等无约束真实工作场景。
+- [Egocentric-10K](https://huggingface.co/datasets/builddotai/Egocentric-10K) — Build AI（2025）。迄今规模最大的第一人称数据集；**10,000 小时 / 10.8 亿帧 / 192,900 段**，全部采集于真实工厂，手部可见度与主动操作密度领先同类。⚠️ **门控数据集**，详见[商业受限与门控数据集](#商业受限与门控数据集)。[[评估集]](https://huggingface.co/datasets/builddotai/Egocentric-10K-Evaluation)
+- [HumanNet](https://dagroup-pku.github.io/HumanNet/) — 北京大学等（2026）。**百万小时**人类中心视频语料，覆盖第一人称与第三人称视角，提供以交互为中心的标注；受控实验表明 **1,000 小时 egocentric 视频优于 100 小时真机数据**。[[论文]](https://arxiv.org/abs/2605.06747) [[代码]](https://github.com/DAGroup-PKU/HumanNet)
+- [EgoMimic](https://egomimic.github.io/) — 佐治亚理工学院（2024）。以第一人称视频 + 手部追踪进行模仿学习的早期代表，约 4 小时数据、3 个任务，是 EgoDex 的直接方法学前驱。[[论文]](https://arxiv.org/abs/2410.24221)
+- [Assembly-101](https://assembly-101.github.io/) — Meta Reality Labs / 新加坡国立大学（CVPR 2022）。大规模多视角程序性活动数据集；参与者组装 101 款儿童玩具，提供手-物交互的无标记动作捕捉与多级动作标注。**Gr00T N1 的 egocentric 训练来源之一**。[[论文]](https://arxiv.org/abs/2212.04501) [[下载]](https://huggingface.co/datasets/cvml-nus/assembly101)
+- [HOI4D](https://hoi4d.github.io/) — 清华大学 / 北京大学（CVPR 2022）。类别级第一人称 4D 人-物交互数据集；**240 万 RGB-D 帧 / 4,000 段序列 / 9 名参与者 / 800 个物体实例 / 16 类 / 610 个室内场景**，含全景分割、运动分割、3D 手部姿态与类别级物体姿态标注。**Gr00T N1 的 egocentric 训练来源之一**。[[论文]](https://arxiv.org/abs/2203.01577)
+- [HoloAssist](https://holoassist.github.io/) — 微软（ICCV 2023）。真实世界第一人称人类交互数据集；**169 小时 / 350 对**指导者-执行者，每位执行者佩戴 MR 头显采集 7 路同步数据流（含深度、手部姿态、眼动、IMU），面向交互式 AI 助手。**Gr00T N1 的 egocentric 训练来源之一**。[[论文]](https://arxiv.org/abs/2309.17024)
+- [RH20T / RH20T-Human](https://rh20t.github.io/) — 上海交通大学（2023）。**11 万+** 接触密集型机器人操作序列，每条均配对应的人类演示视频；RH20T-Human 为其人类演示子集，是 Gr00T N1 的 egocentric 训练来源之一。[[论文]](https://arxiv.org/abs/2307.00595)
 
 ### 长期记忆与第一人称视频问答
 
@@ -108,6 +130,21 @@
 - [TREK-100](https://opendatalab.com/OpenDataLab/TREK-100) — 第一人称视觉中的目标跟踪（100 段视频）。
 - [Charade-Ego](https://prior.allenai.org/projects/charades-ego) — 成对的第一人称与第三人称日常活动视频。
 
+
+## 商业受限与门控数据集
+
+以下数据集规模可观，但**需要申请访问（gated）或存在商业使用限制**。收录时请务必先确认其许可条款，**切勿直接用于商业用途**：
+
+- [Egocentric-10K](https://huggingface.co/datasets/builddotai/Egocentric-10K) — 10,000 小时 / 10.8 亿帧，真实工厂场景。**门控**：需同意条款并提交联系方式。同系列 [Egocentric-100K](https://huggingface.co/datasets/builddotai/Egocentric-100K) 规模约 100,405 小时 / 108 亿帧。
+- [Xperience-10M](https://huggingface.co/datasets/ropedia-ai/xperience-10m) — 约 1 万小时 / 近 1 PB，多传感器同步采集。**门控，自定义许可（other）**。
+- [EgoSuite-Open100K](https://huggingface.co/collections/LightwheelAI/egosuite-open100k) — 规划 10 万小时第一人称人类活动数据（首期 1 万小时已开放）。**商用训练受限**。
+- [Ego500](https://huggingface.co/datasets/humanarchive/ego500) — 500 小时第一人称工作视频 / 31 万+ 结构化动作标注。**门控，CC-BY-NC-4.0（非商用）**。
+- [Nexdata 10,000-Hour Egocentric Video](https://huggingface.co/datasets/Nexdata-AI/10000-Hour-Egocentric-Video-Dataset) — 10,000 小时，PICO 4 Ultra 4K 立体视频。**商用门控**。
+- [Datoric Industrial Egocentric Video](https://huggingface.co/datasets/Datoric/industrial-egocentric-video-50000h) — 50,000 小时工业场景。**商用门控**。
+- [Datoric Residential Egocentric Video](https://huggingface.co/datasets/Datoric/egocentric-residential-video-100000h) — 100,000 小时住宅场景。**商用门控**。
+- [EgoBrain](https://huggingface.co/datasets/ut-vision/EgoBrain) — 1.6 TB / 40 名参与者。**门控，CC-BY-NC-4.0（非商用）**。
+
+> **许可提醒**：本清单中另有多条数据集的原始许可本身即限制商用，例如 [EgoDex](https://github.com/apple/ml-egodex) 为 **CC-BY-NC-ND**（署名-非商用-禁演绎）、[HOT3D](https://facebookresearch.github.io/hot3d/) 与 [Ego-Exo4D](https://ego-exo4d-data.org/) 亦为非商用研究许可。引用前请逐一核对官方许可页。
 
 ## 参与贡献
 

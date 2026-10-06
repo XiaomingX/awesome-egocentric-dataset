@@ -8,11 +8,13 @@
 
 - [关于](#关于)
 - [常用官方入口与获取指南](#常用官方入口与获取指南)
+- [领域核心综述与学术社区活动](#领域核心综述与学术社区活动)
 - [近年新数据集（2023–2026）](#近年新数据集20232026)
-  - [Ego4D / Ego-Exo4D 与基准](#ego4d--ego-exo4d-与基准)
-  - [智能眼镜与 Project Aria](#智能眼镜与-project-aria)
-  - [第一人称视频理解与视频大模型](#第一人称视频理解与视频大模型)
-  - [手-物交互与灵巧操作](#手-物交互与灵巧操作)
+  - [Ego4D / Ego-Exo4D 与衍生基准](#ego4d--ego-exo4d-与衍生基准)
+  - [智能眼镜与 Project Aria 生态](#智能眼镜与-project-aria-生态)
+  - [程序性活动理解与失误检测](#程序性活动理解与失误检测)
+  - [第一人称视频理解、大模型与视听具身](#第一人称视频理解大模型与视听具身)
+  - [手-物交互、3D 姿态与灵巧操作](#手-物交互3d-姿态与灵巧操作)
   - [规模化人类视频与具身预训练](#规模化人类视频与具身预训练20252026)
   - [长期记忆与第一人称视频问答](#长期记忆与第一人称视频问答)
 - [经典数据集](#经典数据集)
@@ -59,30 +61,58 @@
 > 1. **先看字段与模式**：优先下载体积极小的 **标注文件（Annotations / Metadata）** 或 **可视化样例（Visualizations / Sample Clips）**，在本地先期检查 JSON schema、时间戳对齐与标注字段定义。
 > 2. **按任务拉取子集**：根据具体研究任务（例如 FHO 手物交互、MQ 矩查询、AV 音视频同步、3D 手部估计），使用官方 CLI 工具附带的 `--datasets` 或 `--parts` 过滤选项，仅拉取当前任务所需的特征（Features）、低分辨率代理（Downscaled Clips）或指定视频片段，大幅节省带宽与存储空间。
 
+## 领域核心综述与学术社区活动
+
+### 权威综述路线图
+
+- **[An Outlook into the Future of Egocentric Vision](https://arxiv.org/abs/2308.07123)**（IJCV 2024）— 由第一人称视觉领域多位领头学者联合撰写的全景综述与技术路线图，系统梳理了从穿戴式硬件生态、任务定义（动作识别、注视预测、手物交互、三维感知与重构、长期记忆）到主流基准与开放挑战。
+
+### 核心学术研讨会（Recurring Workshops）
+
+- **[EgoVis Workshop (Joint Egocentric Vision Workshop)](https://egovis.github.io/)** — 当前第一人称视觉领域最核心的学术交流阵地，整合了历史悠久的 EPIC Workshop、Ego4D Workshop 与 Project Aria 社区，常设于 CVPR（CVPR 2024、2025、2026），持续主办年度基准挑战赛与杰出论文评选。
+- **[EgoMotion Workshop](https://egomotion-workshop.github.io/)** — 聚焦基于第一人称穿戴式多模态传感器的人体动作追踪、动作合成与行为理解的专题研讨会（CVPR 2024、ICCV 2025）。
+
 ## 近年新数据集（2023–2026）
 
-### Ego4D / Ego-Exo4D 与基准
+### Ego4D / Ego-Exo4D 与衍生基准
 
 - [Ego-Exo4D](https://ego-exo4d-data.org/) — Meta AI / UIUC 等多机构（2023，NeurIPS）。大规模多模态多视角数据集，包含同步的第一人称（主要来自 Project Aria 眼镜）+ 多路外部第三人称视频，覆盖熟练技能类活动，总计约 **1,286 小时**，提供 3D 手/身体/注视标注与基准。需签署学术许可。[[论文]](https://arxiv.org/abs/2311.18259) [[代码]](https://github.com/facebookresearch/Ego4d)
 - [EgoSchema](https://egoschema.github.io/) — 加州大学伯克利分校 BAIR（CVPR 2024）。超长视频理解诊断基准；约 5,000 段 180 秒 Ego4D 片段 + 人工标注选择题。[[论文]](https://arxiv.org/abs/2308.09126)
+- [HourVideo](https://hourvideo.stanford.edu/) — 斯坦福大学等（NeurIPS 2024）。超长第一人称视频语言理解诊断基准；精选 500 段时长在 20 至 120 分钟的未修剪 Ego4D 视频，包含 12,976 道人工多选问答，全面评测长视频摘要、感知定位、时空/因果推理与导航能力。[[论文]](https://arxiv.org/abs/2411.04998)
 - [EgoTracks](https://ego4d-data.org/docs/data/egotracks/) — Meta AI（2023）。基于 Ego4D 的长期目标跟踪基准，5.9k 视频中约 22.42k 条轨迹。
+- [Ego4D Goal-Step](https://arxiv.org/abs/2311.18259) — 层次化目标-步骤-子步骤任务规划基准；包含 2,807 小时目标标签视频与 430 小时细粒度步骤标注（4.8 万步骤段）。
+- [Ego4D-HCap](https://arxiv.org/abs/2307.16854) — 分层长程视频总结与描述基准；基于小时级 Ego4D 视频构建 8,267 条人工密集长视频摘要。
+- [LongEgoRefer](https://arxiv.org/abs/2403.15382) — 长视频时空目标 Grounding 基准；在平均 45 分钟的未修剪第一人称视频中定位 1,498 条指称表达。
+- [EgoSAT](https://arxiv.org/abs/2406.18898) — 面向流式具身交互理解的第一人称视频基准；165 小时第一人称视频配约 4,800 对问答。
 - [EgoPet](https://www.amirbar.net/egopet/) — Technion（ECCV 2024）。动物第一人称视频数据集（自我运动 + 交互），含三个行为基准任务。[[论文]](https://arxiv.org/abs/2404.09991)
 - [EgoHumans](https://rawalkhirodkar.github.io/egohumans/) — 卡内基梅隆大学（ICCV 2023）。首个野外多人体 3D 理解第一人称基准；12.5 万+ 图像，含 SMPL / SMPL-X 标注。[[论文]](https://arxiv.org/abs/2305.16487)
 
-### 智能眼镜与 Project Aria
+### 智能眼镜与 Project Aria 生态
 
 > [Meta Project Aria](https://www.projectaria.com/) 是 Meta 为第一人称具身 AI 与多模态感知研发的专用传感器眼镜平台（集成双 SLAM 相机、眼动追踪仪、RGB 传感器、双 IMU 及空间麦克风阵列）。Ego-Exo4D 的第一人称视角以及以下 AEA、ADT、Nymeria、HOT3D 等基准均主要由该设备采集。
 
 - [Aria Everyday Activities (AEA)](https://www.projectaria.com/datasets/aea/) — Meta Reality Labs（CVPR 2024）。来自 Aria 智能眼镜的开放多模态日常活动数据集；143 段（约 18 小时），含 IMU / 眼动。[[论文]](https://arxiv.org/abs/2402.13349)
 - [Aria Digital Twin (ADT)](https://www.projectaria.com/datasets/adt/) — Meta Reality Labs（2023）。用 Aria 采集的第一人称 3D 基准，配大规模仿真真值（设备/物体/场景 3D）。[[论文]](https://arxiv.org/abs/2306.06362)
+- [Oxford Day-and-Night (OxDaN)](https://oxdan.active.vision/) — 牛津大学（NeurIPS 2025）。基于 Project Aria 智能眼镜在日间与夜间极端光照下采集的超大规模第一人称 3D 视觉基准；覆盖 30+ 公里轨迹、约 4 万平方米室内外场景，提供多会话 SLAM 毫米级位姿与 3D 点云真值，面向新视角合成（3DGS/NeRF）与视觉重定位评测。[[论文]](https://arxiv.org/abs/2506.04224) [[数据]](https://huggingface.co/datasets/active-vision-lab/oxford-day-and-night)
+- [LaMAria](https://lamaria.ethz.ch/) — 苏黎世联邦理工 ETH Zurich / Meta（2025）。城市级第一人称视觉惯性 SLAM 基准；Aria 眼镜采集数小时与数公里城市轨迹，配备大地测量级控制点厘米精度真值。[[代码]](https://github.com/cvg/lamaria) [[论文]](https://arxiv.org/abs/2408.08332)
 - [Nymeria](https://arxiv.org/abs/2406.09905) — Meta Reality Labs（ECCV 2024）。最大规模野外全身运动数据集；264 名参与者、300 小时，用 Aria 眼镜采集。
 - [HOT3D](https://facebookresearch.github.io/hot3d/) — Meta（2024）。第一人称 3D 手-物交互跟踪；833 段序列，由 Aria + Quest 3 采集，是官方 BOP 数据集之一。[[论文]](https://arxiv.org/abs/2406.09598) [[代码]](https://github.com/facebookresearch/hot3d)
 - [HD-EPIC](https://hd-epic.github.io/) — 多机构联合（CVPR 2025）。高细节第一人称视频数据集；41 小时非脚本厨房视频，逐帧 3D / 手 / 语音密集标注。[[论文]](https://arxiv.org/abs/2502.04144)
+- [EgoXtreme](https://arxiv.org/abs/2410.07639) — 极端环境第一人称 6D 物体姿态估计基准；由 15 位参与者佩戴 Aria 眼镜在极端低照、剧烈运动模糊和烟雾场景（工业检修、运动、应急救援）下采集 130 万帧（775 分钟）。
 - [LookOut / AND](https://arxiv.org/abs/2508.14466) —（ICCV 2025）。真实人形第一人称导航数据集；约 4 小时 Aria 导航录制，面向基于 VLM 的导航。
 
-### 第一人称视频理解与视频大模型
+### 程序性活动理解与失误检测
 
+- [CaptainCook4D](https://captaincook4d.github.io/captain-cook/) — 佛罗里达大学（CVPR 2024）。首个第一人称 4D 复杂烹饪操作与失误检测基准；384 段录制（94.5 小时），标注 5.3K 步骤与 10K 细粒度动作，显式构建按规执行（Correct）与步骤偏离/诱发失误（Erroneous）对照组。[[代码]](https://github.com/CaptainCook4D/CaptainCook4D) [[论文]](https://arxiv.org/abs/2312.14441)
+- [IndEgo](https://indego-dataset.github.io/) — Fraunhofer IPK 等（NeurIPS 2025）。大规模工业作业与人机协同多模态数据集；3,460 段第一人称（~197 小时）+ 1,092 段外部多视角（~97 小时），覆盖工业装配、物流检修，集成眼动、双手姿态、失误检测与推理 VQA 基准。[[数据]](https://huggingface.co/datasets/FraunhoferIPK/IndEgo) [[论文]](https://arxiv.org/abs/2511.19684)
+- [EPFL-Smart-Kitchen-30](https://cnai.epfl.ch/EPFL-Smart-Kitchen) — 洛桑联邦理工 EPFL / 微软（NeurIPS 2025）。多模态多视角厨房动作与人体运动学基准；16 名受试者烹饪 4 种食谱（29.7 小时），同步 9 路第三人称 RGB-D + 第一人称 HoloLens 2，含深度、IMU、眼动与高精度 3D 骨骼关节学真值。[[代码]](https://github.com/amathislab/EPFL-Smart-Kitchen) [[论文]](https://arxiv.org/abs/2506.01608)
+- [EgoProceL](https://github.com/Sid2697/EgoProceL-egocentric-procedure-learning) — IIIT Hyderabad（ECCV 2022）。第一人称程序性学习基准；130 名受试者 16 项日常与制作任务（62 小时），专注于跨视频非监督关键步骤发现与对齐。[[论文]](https://arxiv.org/abs/2207.10883)
 - [EgoExoLearn](https://egoexolearn.github.io/) — 上海人工智能实验室 / OpenGVLab（CVPR 2024）。大规模异步 ego-exo 程序性活动数据集，1000+ 小时分层程序标注。[[论文]](https://arxiv.org/abs/2403.16182) [[代码]](https://github.com/OpenGVLab/EgoExoLearn)
+
+### 第一人称视频理解、大模型与视听具身
+
+- [EgoBlind](https://github.com/doc-doc/EgoBlind) — 华盛顿大学 / 腾讯等（NeurIPS 2025）。首个面向视障人群真实需求的第一人称 VideoQA 基准；1,392 段真实盲人生活视频，5,311 个由视障者直接提出或验证的真实问答，评估多模态大模型在弱视力辅助中的认知与可靠回答能力。[[论文]](https://arxiv.org/abs/2503.08221)
+- [EgoAVU](https://arxiv.org/abs/2410.11623) —（2024）。第一人称视听具身理解评测套件；含 300 万条指令微调数据（EgoAVU-Instruct）与高精度评测基准（EgoAVU-Bench），覆盖视听定位、时序推理与防幻觉。
 - [EgoThink](https://adacheng.github.io/EgoThink/) —（CVPR 2024 Highlight）。评估 VLM 第一人称"思考"的基准，六类任务，选自 Ego4D。[[论文]](https://arxiv.org/abs/2311.15596) [[代码]](https://github.com/AdaCheng/EgoThink)
 - [VidEgoThink](https://adacheng.github.io/VidEgoThink/) —（2024）。第一人称视频理解评测；约 400 个视频问答样本。[[论文]](https://arxiv.org/abs/2410.11623)
 - [EgoVideo](https://arxiv.org/abs/2406.18070) — 上海人工智能实验室 / OpenGVLab（2024）。在大型预训练数据上训练的第一人称视频基础模型。[[代码]](https://github.com/OpenGVLab/EgoVideo)
@@ -98,9 +128,12 @@
 - [Ego-1K](https://huggingface.co/datasets/facebook/ego-1k) —（CVPR 2026）。大规模时间同步第一人称**多视角**视频数据集；近 1,000 段短视频，由 12 台同步相机环绕佩戴 VR 头显的用户采集，聚焦手部运动与手-物交互，面向 3D/4D 新视角合成与具身感知。
 - [RekaDaily-10k](https://huggingface.co/datasets/RekaAI/RekaDaily-10k-raw) — Reka AI（2026）。增量发布的超大规模无脚本第一人称日常生活视频；当前含 **7,834 小时 / 397,171 段视频**，Apache-2.0 开放许可。
 
-### 手-物交互与灵巧操作
+### 手-物交互、3D 姿态与灵巧操作
 
 - [EgoDex](https://github.com/apple/ml-egodex) — Apple（2025）。最大规模第一人称灵巧操作数据集；829+ 小时，用 Vision Pro 采集并含 3D 手部姿态。[[论文]](https://arxiv.org/abs/2505.11709)
+- [EPIC-Contact](https://sid2697.github.io/epic-contact) — 布里斯托大学（ECCV 2026）。真实厨房双手与物体接触 3D 姿态基准；从 EPIC-KITCHENS 标注 2.3K 片段（6.23 万帧），提供密集双向 3D 手-物接触对应与网格，配套 HOPformer 模型。[[代码]](https://github.com/Sid2697/HOPformer) [[论文]](https://arxiv.org/abs/2606.30598) [[数据]](https://huggingface.co/datasets/Sid2697/epic-contact)
+- [EgoBody](https://egobody.ethz.ch/) — 苏黎世联邦理工 ETH Zurich（ECCV 2022）。大规模第一人称社交交互与 3D 人体运动捕捉基准；头戴设备同步采集复杂真实 3D 场景下多人的全身姿态与交互网格。[[论文]](https://arxiv.org/abs/2112.07642)
+- [UnrealEgo / UnrealEgo2](https://unrealego.mpi-inf.mpg.de/) — 马克斯·普朗克研究所 MPI-INF（ECCV 2022 / CVPR 2024）。立体双目鱼眼第一人称 3D 人体姿态估计开山基准与挑战赛平台；含逼真合成与真实世界测试集，配套 EgoPoseFormer 基线。[[代码]](https://github.com/hiroyasuakada/UnrealEgo) [[论文]](https://arxiv.org/abs/2208.01633)
 - [OpenEgo](https://arxiv.org/abs/2509.05513) —（2025）。大规模多模态第一人称灵巧操作数据集。
 - [EgoSim / MultiEgoView](https://arxiv.org/abs/2502.18373) —（NeurIPS 2024）。第一人称多视角模拟器 + 真实数据集。
 - [EMHI](https://arxiv.org/abs/2408.17168) —（2024）。多模态第一人称人体运动数据集。
@@ -122,14 +155,17 @@
 
 ### 长期记忆与第一人称视频问答
 
+- [HourVideo](https://hourvideo.stanford.edu/) — 斯坦福大学等（NeurIPS 2024）。超长第一人称视频语言理解基准；500 段 20–120 分钟未修剪长视频，12,976 道人工多选问答，评测长时程记忆、时序/因果推理与导航。[[论文]](https://arxiv.org/abs/2411.04998)
 - [SuperMemory-VQA](https://arxiv.org/abs/2606.00825) —（2026）。第一人称 VQA 数据集，52.9 小时 AI 眼镜日常录制，用于长期记忆推理。
 - [EgoMemReason](https://egomemreason.github.io/) —（2026）。记忆驱动的长期第一人称视频推理基准（周级）。
+- [MyEgo](https://github.com/Ryougetsu3606/MyEgo) —（CVPR 2026）。个性化第一人称 VideoQA 基准；541 段长视频、5,000 个围绕佩戴者私人物品、日常活动与个人历史轨迹的个性化问答，评测 MLLM 的自我中心意图与 Ego-Grounding 能力。
 
 ## 经典数据集
 
 以下为经典的第一人称数据集（2023 年之前），链接已更新到其当前官方页面。
 
 - [Ego4D](https://ego4d-data.org/) — 约 **3,670 小时**日常活动第一人称视频（v1 为 3,025 小时），来自全球 9 个国家的 74 个地点、855 位佩戴者，部分含注视、立体双目与多机位同步。需签署学术许可，通过后约 48 小时提供 AWS 凭证。[[文档](https://ego4d-data.org/docs/)] [[代码与下载工具](https://github.com/facebookresearch/Ego4d)]
+- [EgoHands](http://vision.soic.indiana.edu/projects/egohands/) — 印第安纳大学（CVPR 2015）。经典第一人称手部检测与交互基准；48 段高分辨率双手交互视频，涵盖下棋、拼图等桌上协同，包含 1.5 万+ 帧逐像素精细手部分割与交互标注。[[论文]](https://ieeexplore.ieee.org/document/7298642)
 - [EgoCom](https://github.com/facebookresearch/EgoCom-Dataset) — 自然对话数据集，多模态人机沟通数据，从参与者第一人称视角同步采集。
 - [EPIC-Kitchens](https://epic-kitchens.github.io/) — 第一人称厨房场景经典基准，参与者在原生环境中进行非脚本动作（含 EPIC-KITCHENS-55、EPIC-KITCHENS-100 及 2018/2020 版本），在动作识别和手-物交互研究中应用最为广泛。
 - [EPIC-Tent](https://data.bris.ac.uk/data/dataset/2ite3tu1u53n42hjfh3886sa86) — 29 名参与者佩戴两个头戴相机搭建帐篷。[[论文]](https://ieeexplore.ieee.org/document/9022634)

@@ -20,3 +20,28 @@
 3. **纠正与更新旧版本条目**：
    - 更新目录索引（TOC），接入新增章节锚点。
    - 修正经典数据集章节中 Ego4D 与 EPIC-Kitchens 的描述与配套链接。
+
+## [2026-10-06 21:08] 扩充领域综述路线图、顶级 Workshop 与高权威学术基准矩阵
+
+- **上线/引入日期**: 2026-10-06
+- **涉及模块**: `README.md`（全景综述与研讨会、Ego4D 衍生基准、Aria 生态、程序性活动与失误检测、3D 姿态与手物接触、无障碍与视听具身、经典数据集）
+
+### 1. 变更动机
+参照领域权威综述与学术脉络（IJCV 2024 与 awesome-egocentric-vision），剔除水刊与广告营销站点，精选具有高学术公信力、被各大顶会（CVPR、ECCV、NeurIPS）录用并有真实代码与数据托管的旗舰基准，进一步充实程序学习、工业失误检测、极端工况三维感知、双目姿态估计与视障辅助问答等核心方向。
+
+### 2. 变更详情
+1. **领域核心综述与学术社区活动**：
+   - 补充首篇全景技术路线图：*An Outlook into the Future of Egocentric Vision* (IJCV 2024)。
+   - 补充核心研讨会：EgoVis Workshop（CVPR 常设，合并 EPIC + Ego4D + Aria）与 EgoMotion Workshop（CVPR 2024/ICCV 2025）。
+2. **Ego4D / Ego-Exo4D 衍生基准**：
+   - 补充斯坦福超长视频基准 **HourVideo**（NeurIPS 2024）、分层规划 **Ego4D Goal-Step**、长摘要 **Ego4D-HCap**、长视频定位 **LongEgoRefer** 及流式交互 **EgoSAT**。
+3. **Project Aria 智能眼镜生态拓展**：
+   - 补充牛津大学日夜极端光照 3D 视觉基准 **Oxford Day-and-Night (OxDaN)**、苏黎世联邦理工城市级 SLAM 基准 **LaMAria** 与极端工况 6D 物体姿态基准 **EgoXtreme**。
+4. **新增「程序性活动理解与失误检测」专栏**：
+   - 补充烹饪失误检测基准 **CaptainCook4D**（CVPR 2024）、工业协同操作与检修基准 **IndEgo**（NeurIPS 2025）、多模态动作与人体运动学基准 **EPFL-Smart-Kitchen-30**（NeurIPS 2025）、无监督步骤发现 **EgoProceL**（ECCV 2022）及异步学习 **EgoExoLearn**。
+5. **手-物交互、3D 姿态与灵巧操作**：
+   - 补充密集手-物接触姿态基准 **EPIC-Contact**（ECCV 2026）、社交互动 3D 动捕基准 **EgoBody**（ECCV 2022）、双目鱼眼 3D 姿态基准 **UnrealEgo / UnrealEgo2**（ECCV 2022/CVPR 2024）。
+6. **视障无障碍辅助与视听具身**：
+   - 补充首个视障人群真实需求基准 **EgoBlind**（NeurIPS 2025）、视听指令理解套件 **EgoAVU** 及个性化自我意图基准 **MyEgo**（CVPR 2026）。
+7. **经典数据集补全**：
+   - 补入印第安纳大学经典手部像素级分割基准 **EgoHands**（CVPR 2015）。

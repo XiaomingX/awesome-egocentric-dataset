@@ -7,6 +7,7 @@
 ## 目录
 
 - [关于](#关于)
+- [常用官方入口与获取指南](#常用官方入口与获取指南)
 - [近年新数据集（2023–2026）](#近年新数据集20232026)
   - [Ego4D / Ego-Exo4D 与基准](#ego4d--ego-exo4d-与基准)
   - [智能眼镜与 Project Aria](#智能眼镜与-project-aria)
@@ -23,7 +24,7 @@
 ## 关于
 
 本仓库维护一份持续更新的第一人称视觉数据集清单。它借鉴了广受引用的
-[Egocentric-Dataset](https://github.com/EgoAlpha/Egocentric-Dataset) 清单（该清单停更于 2022 年），并做了如下刷新：
+[Egocentric-Dataset](https://github.com/EgoAlpha/Egocentric-Dataset) 与 [awesome-egocentric-vision](https://github.com/Sid2697/awesome-egocentric-vision) 等学术资源（早期清单多停更于 2022 年），并做了如下刷新：
 
 - **剔除**官方页面已失效或不再维护的数据集。
 - **更新**已迁移到新官方页面的数据集链接。
@@ -31,17 +32,46 @@
 
 每个条目都附简要描述（机构、任务类型、规模，若已知）。
 
+## 常用官方入口与获取指南
+
+第一人称（egocentric）视觉数据由于包含大量真实人类日常活动与敏感环境信息，大型基准库普遍需要**签署学术许可协议（Data Use Agreement）**方可授权下载。以下整理了目前最核心的官方入口、索引资源与避坑建议：
+
+### 核心官方入口
+
+- **[Ego4D](https://ego4d-data.org/)** — 日常第一人称视觉基准，规模约 **3,670 小时**（涵盖日常活动、工作、社交等），来自全球 9 个国家 74 个地点、855 位佩戴者。部分片段包含眼动注视（Gaze tracking）、立体双目（Stereo）与多机位同步数据。
+  - **官方文档**：[https://ego4d-data.org/docs/](https://ego4d-data.org/docs/)
+  - **专用下载工具 (CLI)**：[facebookresearch/Ego4d](https://github.com/facebookresearch/Ego4d)
+  - **获取流程**：在线签署学术使用协议，审核通过后（通常约 48 小时）官方将通过邮件发放专用的 AWS S3 访问凭证（AWS Access Key / Secret Key）。
+- **[Ego-Exo4D](https://ego-exo4d-data.org/)** — 头戴第一人称与外部多机位第三人称同步基准，聚焦熟练技能类活动（烹饪、健康、运动、乐器等），总计约 **1,286 小时**。
+  - **官方页面**：[https://ego-exo4d-data.org/](https://ego-exo4d-data.org/)
+  - **获取流程**：同样需要签署学术许可协议，通过官方 CLI 工具与数据凭证拉取对应模态与视角的视频。
+- **[EPIC-KITCHENS](https://epic-kitchens.github.io/)** — 第一人称厨房场景经典基准（涵盖 EPIC-KITCHENS-55 与 EPIC-KITCHENS-100）。
+  - **官方主页**：[https://epic-kitchens.github.io/](https://epic-kitchens.github.io/)
+  - **核心特色**：原生非脚本第一人称环境，在精细化动作识别（Action Recognition）和手-物交互（Hand-Object Interaction）研究中引用和使用最为广泛。
+- **学术索引资源**：[awesome-egocentric-vision](https://github.com/Sid2697/awesome-egocentric-vision) — 按数据集与下游任务（动作识别、手部姿态估计、视线追踪、多模态问答等）系统梳理了 Ego4D、EPIC-KITCHENS、Ego-Exo4D 以及后续专项小库。
+- **核心采集设备**：[Meta Project Aria](https://www.projectaria.com/) — 当前主流第一人称具身数据集的核心硬件平台。Ego-Exo4D 的第一人称头戴视角主要来自这套传感器眼镜（集成眼动仪、双单色 SLAM 相机、RGB 相机、双 IMU 及空间麦克风阵列），亦是 AEA、ADT、Nymeria、HOT3D、LookOut 等前沿基准的官方采集设备。
+
+### 数据下载与存储避坑建议
+
+> [!TIP]
+> **全量视频达 TB 乃至 PB 级，切忌盲目拉取全量原始高清视频！**
+> 
+> 1. **先看字段与模式**：优先下载体积极小的 **标注文件（Annotations / Metadata）** 或 **可视化样例（Visualizations / Sample Clips）**，在本地先期检查 JSON schema、时间戳对齐与标注字段定义。
+> 2. **按任务拉取子集**：根据具体研究任务（例如 FHO 手物交互、MQ 矩查询、AV 音视频同步、3D 手部估计），使用官方 CLI 工具附带的 `--datasets` 或 `--parts` 过滤选项，仅拉取当前任务所需的特征（Features）、低分辨率代理（Downscaled Clips）或指定视频片段，大幅节省带宽与存储空间。
+
 ## 近年新数据集（2023–2026）
 
 ### Ego4D / Ego-Exo4D 与基准
 
-- [Ego-Exo4D](https://ego-exo4d-data.org/) — Meta AI / UIUC（2023，NeurIPS）。大规模多模态多视角数据集，包含同步的第一人称 + 多路第三人称视频，覆盖熟练人类活动（约 116 小时），含 3D 手/身体/注视标注与基准。[[论文]](https://arxiv.org/abs/2311.18259) [[代码]](https://github.com/facebookresearch/Ego4d)
+- [Ego-Exo4D](https://ego-exo4d-data.org/) — Meta AI / UIUC 等多机构（2023，NeurIPS）。大规模多模态多视角数据集，包含同步的第一人称（主要来自 Project Aria 眼镜）+ 多路外部第三人称视频，覆盖熟练技能类活动，总计约 **1,286 小时**，提供 3D 手/身体/注视标注与基准。需签署学术许可。[[论文]](https://arxiv.org/abs/2311.18259) [[代码]](https://github.com/facebookresearch/Ego4d)
 - [EgoSchema](https://egoschema.github.io/) — 加州大学伯克利分校 BAIR（CVPR 2024）。超长视频理解诊断基准；约 5,000 段 180 秒 Ego4D 片段 + 人工标注选择题。[[论文]](https://arxiv.org/abs/2308.09126)
 - [EgoTracks](https://ego4d-data.org/docs/data/egotracks/) — Meta AI（2023）。基于 Ego4D 的长期目标跟踪基准，5.9k 视频中约 22.42k 条轨迹。
 - [EgoPet](https://www.amirbar.net/egopet/) — Technion（ECCV 2024）。动物第一人称视频数据集（自我运动 + 交互），含三个行为基准任务。[[论文]](https://arxiv.org/abs/2404.09991)
 - [EgoHumans](https://rawalkhirodkar.github.io/egohumans/) — 卡内基梅隆大学（ICCV 2023）。首个野外多人体 3D 理解第一人称基准；12.5 万+ 图像，含 SMPL / SMPL-X 标注。[[论文]](https://arxiv.org/abs/2305.16487)
 
 ### 智能眼镜与 Project Aria
+
+> [Meta Project Aria](https://www.projectaria.com/) 是 Meta 为第一人称具身 AI 与多模态感知研发的专用传感器眼镜平台（集成双 SLAM 相机、眼动追踪仪、RGB 传感器、双 IMU 及空间麦克风阵列）。Ego-Exo4D 的第一人称视角以及以下 AEA、ADT、Nymeria、HOT3D 等基准均主要由该设备采集。
 
 - [Aria Everyday Activities (AEA)](https://www.projectaria.com/datasets/aea/) — Meta Reality Labs（CVPR 2024）。来自 Aria 智能眼镜的开放多模态日常活动数据集；143 段（约 18 小时），含 IMU / 眼动。[[论文]](https://arxiv.org/abs/2402.13349)
 - [Aria Digital Twin (ADT)](https://www.projectaria.com/datasets/adt/) — Meta Reality Labs（2023）。用 Aria 采集的第一人称 3D 基准，配大规模仿真真值（设备/物体/场景 3D）。[[论文]](https://arxiv.org/abs/2306.06362)
@@ -99,9 +129,9 @@
 
 以下为经典的第一人称数据集（2023 年之前），链接已更新到其当前官方页面。
 
-- [Ego4D](https://ego4d-data.org/) — 3025 小时日常活动视频，来自 9 个国家的 74 个地点、855 位佩戴者。[[下载](https://ego4d.dev/)]
+- [Ego4D](https://ego4d-data.org/) — 约 **3,670 小时**日常活动第一人称视频（v1 为 3,025 小时），来自全球 9 个国家的 74 个地点、855 位佩戴者，部分含注视、立体双目与多机位同步。需签署学术许可，通过后约 48 小时提供 AWS 凭证。[[文档](https://ego4d-data.org/docs/)] [[代码与下载工具](https://github.com/facebookresearch/Ego4d)]
 - [EgoCom](https://github.com/facebookresearch/EgoCom-Dataset) — 自然对话数据集，多模态人机沟通数据，从参与者第一人称视角同步采集。
-- [EPIC-Kitchens](https://epic-kitchens.github.io/) — 参与者在原生环境中进行非脚本动作（含 EPIC-Kitchens 55、EPIC-KITCHENS-100 及 2018/2020 版本）。
+- [EPIC-Kitchens](https://epic-kitchens.github.io/) — 第一人称厨房场景经典基准，参与者在原生环境中进行非脚本动作（含 EPIC-KITCHENS-55、EPIC-KITCHENS-100 及 2018/2020 版本），在动作识别和手-物交互研究中应用最为广泛。
 - [EPIC-Tent](https://data.bris.ac.uk/data/dataset/2ite3tu1u53n42hjfh3886sa86) — 29 名参与者佩戴两个头戴相机搭建帐篷。[[论文]](https://ieeexplore.ieee.org/document/9022634)
 - [MECCANO](https://iplab.dmi.unict.it/MECCANO/) — 20 名受试者组装玩具摩托车。[[代码]](https://github.com/fpv-iplab/MECCANO)
 - [EGO-CH](https://iplab.dmi.unict.it/EGO-CH/) — 70 名受试者参观意大利西西里两处文化遗址。
